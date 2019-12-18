@@ -36,25 +36,33 @@ namespace Battleship
 
             List<Ship> ships = new List<Ship>();
 
-            Ship ship1 = new Ship("biggest ship", 5);
+            Ship ship1 = new Ship("Aircraft Carrier", 5);
+            Ship ship2 = new Ship("Battleship", 4);
+            Ship ship3 = new Ship("Cruiser", 3);
+            Ship ship4 = new Ship("Submarine", 3);
+            Ship ship5 = new Ship("Destroyer", 2);
             ships.Add(ship1);
-            Ship ship2 = new Ship("smallest ship", 2);
             ships.Add(ship2);
+            ships.Add(ship3);
+            ships.Add(ship4);
+            ships.Add(ship5);
+            
 
             foreach (Ship s in ships)
             {
-                PlaceShip(s);
+                bool isValidated;
+                do
+                {
+                    isValidated = PlaceShip(s);
+                }
+                while (!isValidated);
+                
             }
-
-            
-
-            
-
         }
 
-        public void PlaceShip(Ship ship)
+        public bool PlaceShip(Ship ship)
         {
-            Console.WriteLine("Please place " + ship.Name + " with a length of " + ship.Len + " onto your sea.");
+            Console.WriteLine("Please place " + ship.Name + " with a length of " + ship.Len + " holes onto your sea.");
             Console.WriteLine("Give me the coordinates that you wish to put this ship.");
             
 
@@ -62,6 +70,7 @@ namespace Battleship
             char y;
             char dir;
             char dir2;
+
             do
             {
                 Console.Write("Give me the horizontal value (from 0 to 9) :");
@@ -86,9 +95,6 @@ namespace Battleship
                 }
             }
             while (y < 'A' || y > 'J');
-
-
-
 
             do
             {
@@ -136,13 +142,79 @@ namespace Battleship
                 while (dir2 != 'U' && dir2 != 'D');
             }
 
-            Console.WriteLine((int)(x - 47));
-            Console.WriteLine((int)(y - 64));
-            Console.WriteLine(dir);
-            Console.WriteLine(dir2);
+            Console.WriteLine();
 
+                if (CheckPlacement((int)(y - 64), (int)(x - 47), dir, dir2, ship.Len))
+                {
+                    ValidatePlacement((int)(y - 64), (int)(x - 47), dir, dir2, ship.Len, ship.Name[0]);
+                    Console.Clear();
+                    Display();
+                    return (true);
+                }
+                else
+                {
+                    Console.WriteLine("!!! The place you choose in not available, please redo it !!!");
+                Console.Clear();
+                Display();
+                return (false);
+                }
+                 
 
+            
 
+        }
+
+        public bool CheckPlacement(int x, int y, char dir1, char dir2, int len)
+        {
+          
+                for (int i = 0; i < len; i++)
+                {
+                if (dir1 == 'H' && dir2 == 'R' && (y + len - 1) < 11)
+                {
+                    if (map[x, y + i] == '~')
+                        continue;
+                    return (false);
+
+                }
+                else if (dir1 == 'H' && dir2 == 'L' && (y - len + 1) >= 1)
+                {
+                    if (map[x, y - i] == '~')
+                        continue;
+                    return (false);
+                }
+
+                else if (dir1 == 'V' && dir2 == 'D' && (x + len - 1) < 11)
+                {
+                    if (map[x + i, y] == '~')
+                        continue;
+                    return (false);
+
+                }
+                else if (dir1 == 'V' && dir2 == 'U' && (x - len + 1) >= 1)
+                {
+                    if (map[x - i, y] == '~')
+                        continue;
+                    return (false);
+                }
+                else
+                    return (false);
+                }
+            return (true);
+        }
+
+        public void ValidatePlacement(int x, int y, char dir1, char dir2, int len, char name)
+        {
+            for (int i = 0; i < len; i++)
+            {
+                if (dir1 == 'H' && dir2 == 'R')
+                    map[x, y + i] = name;
+                else if (dir1 == 'H' && dir2 == 'L')
+                    map[x, y - i] = name;
+                else if (dir1 == 'V' && dir2 == 'D')
+                    map[x + i, y] = name;
+                else if (dir1 == 'V' && dir2 == 'U')
+                    map[x - i, y] = name;
+            }
         }
 
         public void Display()
