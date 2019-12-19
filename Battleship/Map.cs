@@ -58,16 +58,15 @@ namespace Battleship
             List<Ship> ships = new List<Ship>();
 
             Ship ship1 = new Ship("Aircraft Carrier", 5);
-            //Ship ship2 = new Ship("Battleship", 4);
-            //Ship ship3 = new Ship("Cruiser", 3);
-            //Ship ship4 = new Ship("Submarine", 3);
-            //Ship ship5 = new Ship("Destroyer", 2);
+            Ship ship2 = new Ship("Battleship", 4);
+            Ship ship3 = new Ship("Cruiser", 3);
+            Ship ship4 = new Ship("Submarine", 3);
+            Ship ship5 = new Ship("Destroyer", 2);
             ships.Add(ship1);
-            //ships.Add(ship2);
-            //ships.Add(ship3);
-            //ships.Add(ship4);
-            //ships.Add(ship5);
-
+            ships.Add(ship2);
+            ships.Add(ship3);
+            ships.Add(ship4);
+            ships.Add(ship5);
 
             foreach (Ship s in ships)
             {
@@ -289,7 +288,7 @@ namespace Battleship
                 Score++;
 
                 // the total score here is calculated based on the length of all the ships
-                if (Score >= 5)
+                if (Score >= 17)
                     HasWin = true;
                 game.MapEnemy.ShipMap[a, b] = '@';
                 Console.WriteLine("!!!STRIKE!!!");
