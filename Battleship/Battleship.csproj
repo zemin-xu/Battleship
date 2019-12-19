@@ -36,6 +36,7 @@
     <Compile Include="EmptyClass.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Ship.cs" />
+    <Compile Include="UserInterface.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
