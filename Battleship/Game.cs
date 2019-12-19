@@ -21,7 +21,7 @@ namespace Battleship
             Console.WriteLine("The ships of " + MapActive.PlayerName + " are set!");
             Console.WriteLine("Now it is the turn of Player 2");
             Console.WriteLine("Press any key to continue");
-            Console.Read();
+            Console.ReadKey();
             Console.Clear();
 
             Console.WriteLine("Please type in the name of Player 2");
@@ -33,7 +33,7 @@ namespace Battleship
             Console.WriteLine("The ships of " + MapEnemy.PlayerName + " are set!");
             Console.WriteLine(" !!! Now the war will begin !!! ");
             Console.WriteLine("Press any key to continue");
-            Console.Read();
+            Console.ReadKey();
             Console.Clear();
 
             /* In Game */
@@ -63,7 +63,7 @@ namespace Battleship
             Console.WriteLine(MapEnemy.PlayerName + " 's score : " + MapEnemy.Score);
 
             Console.WriteLine("Press any key to continue");
-            Console.Read();
+            Console.ReadKey();
             Console.Clear();
         } 
     }

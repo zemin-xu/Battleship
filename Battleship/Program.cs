@@ -17,7 +17,7 @@ namespace Battleship
                 Console.WriteLine("Press Q to quit the game");
                 Console.WriteLine();
 
-                char command = (char)Console.Read();
+                char command = Console.ReadKey().KeyChar;
 
                 // menu
                 switch (command)
@@ -39,7 +39,7 @@ namespace Battleship
 
                             Console.WriteLine();
                             Console.WriteLine("Press any key to continue...");
-                            Console.Read();
+                            Console.ReadKey();
                             Console.Clear();
 
                             Console.WriteLine("Before play begins, each player secretly arranges their ships on their primary grid." +
@@ -50,7 +50,7 @@ namespace Battleship
 
                             Console.WriteLine();
                             Console.WriteLine("Press any key to continue...");
-                            Console.Read();
+                            Console.ReadKey();
                             Console.Clear();
 
                             Console.WriteLine("After the ships have been positioned, the game proceeds in a series of rounds." +
@@ -62,7 +62,7 @@ namespace Battleship
 
                             Console.WriteLine();
                             Console.WriteLine("Press any key to return to the menu...");
-                            Console.Read();
+                            Console.ReadKey();
                             Console.Clear();
                         }
                         break;

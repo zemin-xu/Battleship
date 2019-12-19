@@ -98,7 +98,7 @@ namespace Battleship
             do
             {
                 Console.Write("Give me the horizontal value (from 0 to 9) : ");
-                x = (char)Console.Read();
+                x = Console.ReadKey().KeyChar;
                 Console.WriteLine();
                 if (x < '0' || x > '9')
                 {
@@ -110,7 +110,7 @@ namespace Battleship
             do
             {
                 Console.Write("Give me the vertical value (from A to J) in UPPERCASE : ");
-                y = (char)Console.Read();
+                y = Console.ReadKey().KeyChar;
                 Console.WriteLine();
                 if (y < 'A' || y > 'J')
                 {
@@ -124,7 +124,7 @@ namespace Battleship
             do
             {
                 Console.Write("In which direction ? (H for 'Horizontal', V for 'Vertical'): ");
-                dir = (char)Console.Read();
+                dir = Console.ReadKey().KeyChar;
                 Console.WriteLine();
                 if (dir != 'H' && dir != 'V')
                 {
@@ -141,7 +141,7 @@ namespace Battleship
                 do
                 {
                     Console.Write("Towards Left or towards Right ? (L for 'Left', R for 'Right'): ");
-                    dir2 = (char)Console.Read();
+                    dir2 = Console.ReadKey().KeyChar;
                     Console.WriteLine();
                     if (dir2 != 'L' && dir2 != 'R')
                     {
@@ -156,7 +156,7 @@ namespace Battleship
                 do
                 {
                     Console.Write("Upwards or Downwards ? (U for 'Upwards', D for 'Downwards'): ");
-                    dir2 = (char)Console.Read();
+                    dir2 = Console.ReadKey().KeyChar;
                     Console.WriteLine();
                     if (dir2 != 'U' && dir2 != 'D')
                     {
@@ -181,7 +181,7 @@ namespace Battleship
             {
                 Console.WriteLine("!!! The place you choose in not available, please redo it !!!");
                 Console.WriteLine("Press any key to continue...");
-                Console.Read();
+                Console.ReadKey();
                 Console.Clear();
                 Display();
                 return (false);
@@ -255,7 +255,7 @@ namespace Battleship
             do
             {
                 Console.Write("Give me the horizontal value (from 0 to 9) : ");
-                x = (char)Console.Read();
+                x = Console.ReadKey().KeyChar;
                 Console.WriteLine();
                 if (x < '0' || x > '9')
                 {
@@ -267,7 +267,7 @@ namespace Battleship
             do
             {
                 Console.Write("Give me the vertical value (from A to J) in UPPERCASE : ");
-                y = (char)Console.Read();
+                y = Console.ReadKey().KeyChar;
                 Console.WriteLine();
                 if (y < 'A' || y > 'J')
                 {
@@ -294,14 +294,14 @@ namespace Battleship
                 game.MapEnemy.ShipMap[a, b] = '@';
                 Console.WriteLine("!!!STRIKE!!!");
                 Console.WriteLine("Now it is still your turn, press any key to continue...");
-                Console.Read();
+                Console.ReadKey();
                 Console.Clear();
             }
             else if (game.MapEnemy.ShipMap[a, b] == '*' || game.MapEnemy.ShipMap[a, b] == '@')
             {
                 Console.WriteLine("You have already placed a bomb here, choose another place.");
                 Console.WriteLine("Press any key to continue...");
-                Console.Read();
+                Console.ReadKey();
                 Console.Clear();
             }
             else
@@ -311,7 +311,7 @@ namespace Battleship
                 game.ExchangeMap();
                 Console.WriteLine("NO HIT");
                 Console.WriteLine("Now it is your opponent's turn, press any key to continue...");
-                Console.Read();
+                Console.ReadKey();
                 Console.Clear();
             }
         }
