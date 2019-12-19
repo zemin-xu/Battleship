@@ -40,6 +40,10 @@ namespace Battleship
                 ui.Display();
                 MapActive.PlaceBomb();
             }
+
+            /* When a player wins. */
+            MapActive.DisplayTwoMap();
+            FinishGame();
         }
 
         public void ExchangeMap()
@@ -47,6 +51,17 @@ namespace Battleship
             Map tmp = MapActive;
             MapActive = MapEnemy;
             MapEnemy = tmp;
+        }
+
+        public void FinishGame()
+        {
+            Console.WriteLine(" !!! Congratulations " + MapActive.PlayerName + " . You have conquered your enemy " + MapEnemy.PlayerName + " .");
+            Console.WriteLine(MapActive.PlayerName + " 's score : " + MapActive.Score);
+            Console.WriteLine(MapEnemy.PlayerName + " 's score : " + MapEnemy.Score);
+
+            Console.WriteLine("Press any key to continue");
+            Console.Read();
+            Console.Clear();
         }
 
         

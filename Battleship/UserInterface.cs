@@ -14,23 +14,15 @@ namespace Battleship
 
         public void Display()
         {
-            Console.WriteLine("------------- YOUR SEA ------------------- THE BOMB MAP OF ENEMY'S SEA ----------");
+            Console.WriteLine("----------- YOUR SEA ---------- THE BOMB MAP OF ENEMY'S SEA ----------");
             Console.WriteLine();
-            mapInPlaying.Display();
-            Console.WriteLine();
-            
-
-
-            
-            Console.WriteLine();
-            mapInPlaying.DisplayBombMap();
-            Console.WriteLine();
+            mapInPlaying.DisplayTwoMap();
             Console.WriteLine();
 
-            Console.WriteLine("---------- Indication -----------");
-            Console.WriteLine("---------------------------------");
-            Console.WriteLine("Your score : " + mapInPlaying.Score);
-            Console.WriteLine("Enemy's score : " + mapEnemy.Score);
+            Console.WriteLine("---------- Indication to " + mapInPlaying.PlayerName + " -------------");
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine(mapInPlaying.PlayerName + " 's score : " + mapInPlaying.Score);
+            Console.WriteLine(mapEnemy.PlayerName + " 's score : " + mapEnemy.Score);
         }
     }
 }

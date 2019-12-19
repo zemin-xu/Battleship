@@ -5,7 +5,7 @@ namespace Battleship
 {
     public class Map
     {
-        
+
         public char[,] BombMap { get; private set; }
         public char[,] ShipMap { get; private set; }
         public string PlayerName { get; set; }
@@ -34,7 +34,7 @@ namespace Battleship
                 for (int j = 0; j < 11; j++)
                 {
                     if (i == 0 && j == 0)
-                        BombMap[i,j] = ShipMap[i, j] = ' ';
+                        BombMap[i, j] = ShipMap[i, j] = ' ';
                     else if (i == 0)
                         BombMap[i, j] = ShipMap[i, j] = (char)(j + 47);
                     else if (j == 0)
@@ -43,7 +43,7 @@ namespace Battleship
                         BombMap[i, j] = ShipMap[i, j] = '~';
                 }
             }
-           
+
             Display();
 
             Console.WriteLine();
@@ -62,7 +62,7 @@ namespace Battleship
             //ships.Add(ship3);
             //ships.Add(ship4);
             //ships.Add(ship5);
-            
+
 
             foreach (Ship s in ships)
             {
@@ -80,7 +80,7 @@ namespace Battleship
         {
             Console.WriteLine("Please place " + ship.Name + " with a length of " + ship.Len + " holes onto your sea.");
             Console.WriteLine("Give me the coordinates that you wish to put this ship.");
-            
+
             char x;
             char y;
             // horizontal or vertical
@@ -163,29 +163,29 @@ namespace Battleship
 
             Console.WriteLine();
 
-                if (CheckPlacement((int)(y - 64), (int)(x - 47), dir, dir2, ship.Len))
-                {
-                    ValidatePlacement((int)(y - 64), (int)(x - 47), dir, dir2, ship.Len, ship.Name[0]);
-                    Console.Clear();
-                    Display();
-                    return (true);
-                }
-                else
-                {
-                    Console.WriteLine("!!! The place you choose in not available, please redo it !!!");
-                    Console.WriteLine("Press any key to continue...");
+            if (CheckPlacement((int)(y - 64), (int)(x - 47), dir, dir2, ship.Len))
+            {
+                ValidatePlacement((int)(y - 64), (int)(x - 47), dir, dir2, ship.Len, ship.Name[0]);
+                Console.Clear();
+                Display();
+                return (true);
+            }
+            else
+            {
+                Console.WriteLine("!!! The place you choose in not available, please redo it !!!");
+                Console.WriteLine("Press any key to continue...");
                 Console.Read();
                 Console.Clear();
                 Display();
                 return (false);
-                }
+            }
         }
 
         public bool CheckPlacement(int x, int y, char dir1, char dir2, int len)
         {
-          
-                for (int i = 0; i < len; i++)
-                {
+
+            for (int i = 0; i < len; i++)
+            {
                 if (dir1 == 'H' && dir2 == 'R' && (y + len - 1) < 11)
                 {
                     if (ShipMap[x, y + i] == '~')
@@ -215,7 +215,7 @@ namespace Battleship
                 }
                 else
                     return (false);
-                }
+            }
             return (true);
         }
 
@@ -236,7 +236,6 @@ namespace Battleship
 
         public void PlaceBomb()
         {
-            bool isValidated;
             char x;
             char y;
 
@@ -269,40 +268,41 @@ namespace Battleship
             }
             while (y < 'A' || y > 'J');
 
-
-                int a = y - 64;
-                int b = x - 47;
-              
-                    // place bomb
-                    if (game.MapEnemy.ShipMap[a,b] != '~' && game.MapEnemy.ShipMap[a, b] != '*' && game.MapEnemy.ShipMap[a, b] != '@')
-                    {
-                        BombMap[a, b] = '@';
-                        Score++;
-                        game.MapEnemy.ShipMap[a, b] = '@';
-                        Console.WriteLine("!!!STRIKE!!!");
-                        Console.WriteLine("Now it is still your turn, press any key to continue...");
-                        Console.Read();
-                        Console.Clear();
-                    }
-                    else if (game.MapEnemy.ShipMap[a, b] == '*' || game.MapEnemy.ShipMap[a, b] == '@')
-                    {
-                        Console.WriteLine("You have already placed a bomb here, choose another place.");
-                        Console.WriteLine("Press any key to continue...");
-                        Console.Read();
-                        Console.Clear();
-                    }
-                    else
-                    {
-                        BombMap[a, b] = '*';
-                        game.MapEnemy.ShipMap[a, b] = '*';
-                        game.ExchangeMap();
-                        Console.WriteLine("NO HIT");
-                        Console.WriteLine("Now it is your opponent's turn, press any key to continue...");
-                        Console.Read();
-                        Console.Clear();
-                    }    
-               
             
+            // 64 and 47 here is linked to the ASCII code
+            int a = y - 64;
+            int b = x - 47;
+
+            // place bomb
+            if (game.MapEnemy.ShipMap[a, b] != '~' && game.MapEnemy.ShipMap[a, b] != '*' && game.MapEnemy.ShipMap[a, b] != '@')
+            {
+                BombMap[a, b] = '@';
+                Score++;
+                if (Score >= 5)
+                    HasWin = true;
+                game.MapEnemy.ShipMap[a, b] = '@';
+                Console.WriteLine("!!!STRIKE!!!");
+                Console.WriteLine("Now it is still your turn, press any key to continue...");
+                Console.Read();
+                Console.Clear();
+            }
+            else if (game.MapEnemy.ShipMap[a, b] == '*' || game.MapEnemy.ShipMap[a, b] == '@')
+            {
+                Console.WriteLine("You have already placed a bomb here, choose another place.");
+                Console.WriteLine("Press any key to continue...");
+                Console.Read();
+                Console.Clear();
+            }
+            else
+            {
+                BombMap[a, b] = '*';
+                game.MapEnemy.ShipMap[a, b] = '*';
+                game.ExchangeMap();
+                Console.WriteLine("NO HIT");
+                Console.WriteLine("Now it is your opponent's turn, press any key to continue...");
+                Console.Read();
+                Console.Clear();
+            }
         }
 
         public void Display()
@@ -318,11 +318,10 @@ namespace Battleship
                 }
                 Console.WriteLine();
             }
-
             Console.WriteLine();
         }
 
-        public void DisplayBombMap()
+        public void DisplayTwoMap()
         {
             Console.WriteLine();
 
@@ -330,9 +329,14 @@ namespace Battleship
             {
                 for (int j = 0; j < 11; j++)
                 {
-                    Console.Write(BombMap[i, j]);
+                    Console.Write(ShipMap[i, j]);
                     Console.Write(' ');
-
+                }
+                Console.Write("             ");
+                for (int k = 0; k < 11; k++)
+                {
+                    Console.Write(BombMap[i, k]);
+                    Console.Write(' ');
                 }
                 Console.WriteLine();
             }
