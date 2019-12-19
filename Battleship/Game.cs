@@ -3,7 +3,10 @@ namespace Battleship
 {
     public class Game
     {
+        // current player
         public Map MapActive { get; private set; }
+
+        // the opponent of current player
         public Map MapEnemy { get; private set; }
 
         public Game()
@@ -62,8 +65,6 @@ namespace Battleship
             Console.WriteLine("Press any key to continue");
             Console.Read();
             Console.Clear();
-        }
-
-        
+        } 
     }
 }

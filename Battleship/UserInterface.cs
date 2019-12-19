@@ -14,7 +14,7 @@ namespace Battleship
 
         public void Display()
         {
-            Console.WriteLine("----------- YOUR SEA ---------- THE BOMB MAP OF ENEMY'S SEA ----------");
+            Console.WriteLine("------- YOUR SEA -------------- THE BOMB MAP OF ENEMY'S SEA ----------");
             Console.WriteLine();
             mapInPlaying.DisplayTwoMap();
             Console.WriteLine();

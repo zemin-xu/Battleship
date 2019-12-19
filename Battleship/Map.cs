@@ -5,11 +5,16 @@ namespace Battleship
 {
     public class Map
     {
-
+        // the map indicating the place where the player places his bombs onto the map of his opponent.
         public char[,] BombMap { get; private set; }
+
+        // the map indicating the place where the player places his ships.
         public char[,] ShipMap { get; private set; }
+
         public string PlayerName { get; set; }
         public int Score { get; private set; }
+
+        // whether this player has win.
         public bool HasWin { get; private set; }
 
         private Game game;
@@ -27,8 +32,8 @@ namespace Battleship
             ShipMap = new char[11, 11];
             BombMap = new char[11, 11];
 
-
             /* Initialization for the sea of player as well as the bomb ShipMap of enemy. */
+            /* 47 indicating the place of '0' in ASCII, as well as 64, the place of 'A'. */
             for (int i = 0; i < 11; i++)
             {
                 for (int j = 0; j < 11; j++)
@@ -83,6 +88,7 @@ namespace Battleship
 
             char x;
             char y;
+
             // horizontal or vertical
             char dir;
             // left or right, up or down
@@ -163,6 +169,7 @@ namespace Battleship
 
             Console.WriteLine();
 
+
             if (CheckPlacement((int)(y - 64), (int)(x - 47), dir, dir2, ship.Len))
             {
                 ValidatePlacement((int)(y - 64), (int)(x - 47), dir, dir2, ship.Len, ship.Name[0]);
@@ -181,6 +188,7 @@ namespace Battleship
             }
         }
 
+        /* Check placement of ship. */
         public bool CheckPlacement(int x, int y, char dir1, char dir2, int len)
         {
 
@@ -219,6 +227,7 @@ namespace Battleship
             return (true);
         }
 
+        /* Place the ship with the first char of the ship's name. */
         public void ValidatePlacement(int x, int y, char dir1, char dir2, int len, char name)
         {
             for (int i = 0; i < len; i++)
@@ -278,6 +287,8 @@ namespace Battleship
             {
                 BombMap[a, b] = '@';
                 Score++;
+
+                // the total score here is calculated based on the length of all the ships
                 if (Score >= 5)
                     HasWin = true;
                 game.MapEnemy.ShipMap[a, b] = '@';
@@ -305,6 +316,7 @@ namespace Battleship
             }
         }
 
+        /* Display ShipMap */
         public void Display()
         {
             Console.WriteLine();
@@ -321,6 +333,7 @@ namespace Battleship
             Console.WriteLine();
         }
 
+        /* Display ShipMap as well as BombMap of his opponent horizontally. */
         public void DisplayTwoMap()
         {
             Console.WriteLine();
