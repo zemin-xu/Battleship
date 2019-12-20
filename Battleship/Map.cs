@@ -111,6 +111,7 @@ namespace Battleship
             {
                 Console.Write("Give me the vertical value (from A to J) in UPPERCASE : ");
                 y = Console.ReadKey().KeyChar;
+                y = ToUpper(y);
                 Console.WriteLine();
                 if (y < 'A' || y > 'J')
                 {
@@ -125,6 +126,7 @@ namespace Battleship
             {
                 Console.Write("In which direction ? (H for 'Horizontal', V for 'Vertical'): ");
                 dir = Console.ReadKey().KeyChar;
+                dir = ToUpper(dir);
                 Console.WriteLine();
                 if (dir != 'H' && dir != 'V')
                 {
@@ -143,6 +145,7 @@ namespace Battleship
                     Console.Write("Towards Left or towards Right ? (L for 'Left', R for 'Right'): ");
                     dir2 = Console.ReadKey().KeyChar;
                     Console.WriteLine();
+                    dir2 = ToUpper(dir2);
                     if (dir2 != 'L' && dir2 != 'R')
                     {
                         Console.WriteLine();
@@ -158,6 +161,7 @@ namespace Battleship
                     Console.Write("Upwards or Downwards ? (U for 'Upwards', D for 'Downwards'): ");
                     dir2 = Console.ReadKey().KeyChar;
                     Console.WriteLine();
+                    dir2 = ToUpper(dir2);
                     if (dir2 != 'U' && dir2 != 'D')
                     {
                         Console.WriteLine();
@@ -268,6 +272,7 @@ namespace Battleship
             {
                 Console.Write("Give me the vertical value (from A to J) in UPPERCASE : ");
                 y = Console.ReadKey().KeyChar;
+                y = ToUpper(y);
                 Console.WriteLine();
                 if (y < 'A' || y > 'J')
                 {
@@ -372,6 +377,17 @@ namespace Battleship
                 Console.WriteLine();
             }
             Console.WriteLine();
+        }
+
+        public char ToUpper(char c)
+        {
+            int offset = 'a' - 'A';
+            if (c >= 'a' && c<= 'z')
+            {
+                c = ((char)(c - offset));
+            }
+            return (c);
+            
         }
     }
 }
