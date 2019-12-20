@@ -57,11 +57,11 @@ namespace Battleship
 
             List<Ship> ships = new List<Ship>();
 
-            Ship ship1 = new Ship("Aircraft Carrier", 5);
-            Ship ship2 = new Ship("Battleship", 4);
-            Ship ship3 = new Ship("Cruiser", 3);
-            Ship ship4 = new Ship("Submarine", 3);
-            Ship ship5 = new Ship("Destroyer", 2);
+            Ship ship1 = new Ship("AIRCRAFT CARRIER", 5);
+            Ship ship2 = new Ship("BATTLESHIP", 4);
+            Ship ship3 = new Ship("CRUISER", 3);
+            Ship ship4 = new Ship("SUBMARINE", 3);
+            Ship ship5 = new Ship("DESTROYER", 2);
             ships.Add(ship1);
             ships.Add(ship2);
             ships.Add(ship3);
@@ -83,6 +83,7 @@ namespace Battleship
         public bool PlaceShip(Ship ship)
         {
             Console.WriteLine("Please place " + ship.Name + " with a length of " + ship.Len + " holes onto your sea.");
+            Console.WriteLine();
             Console.WriteLine("Give me the coordinates that you wish to put this ship.");
 
             char x;
@@ -291,7 +292,16 @@ namespace Battleship
                 if (Score >= 17)
                     HasWin = true;
                 game.MapEnemy.ShipMap[a, b] = '@';
-                Console.WriteLine("!!!STRIKE!!!");
+
+                Random rand = new Random();
+                int i = rand.Next(3);
+                if (i == 0)
+                    Console.WriteLine("!!!STRIKE !!!");
+                else if (i == 1)
+                    Console.WriteLine("You hit it !!!");
+                else if (i == 2)
+                    Console.WriteLine("One shot !!!");
+
                 Console.WriteLine("Now it is still your turn, press any key to continue...");
                 Console.ReadKey();
                 Console.Clear();
@@ -308,7 +318,16 @@ namespace Battleship
                 BombMap[a, b] = '*';
                 game.MapEnemy.ShipMap[a, b] = '*';
                 game.ExchangeMap();
-                Console.WriteLine("NO HIT");
+                Random rand = new Random();
+                int i = rand.Next(3);
+                if (i == 0)
+                    Console.WriteLine("NO HIT...");
+                else if (i == 1)
+                    Console.WriteLine("What a pity...");
+                else if (i == 2)
+                    Console.WriteLine("You missed it...");
+
+
                 Console.WriteLine("Now it is your opponent's turn, press any key to continue...");
                 Console.ReadKey();
                 Console.Clear();
